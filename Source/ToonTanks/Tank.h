@@ -15,7 +15,9 @@ public:
 	ATank();
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	void HandleDestruction() override;
 
+	APlayerController* GetPlayerController() const;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

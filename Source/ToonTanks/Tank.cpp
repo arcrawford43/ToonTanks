@@ -45,6 +45,13 @@ void ATank::Tick(float DeltaTime)
 	RotateTurret(HitResult.ImpactPoint);
 }
 
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
+}
+
 void ATank::Move(float Value)
 {
 	FVector DeltaLocation(0);
@@ -57,4 +64,9 @@ void ATank::Turn(float Value)
 	FRotator DeltaRotation(0);
 	DeltaRotation.Yaw = Value * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
 	AddActorLocalRotation(DeltaRotation, true);
+}
+
+APlayerController* ATank::GetPlayerController() const
+{
+	return PlayerController;
 }
