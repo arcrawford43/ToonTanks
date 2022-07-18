@@ -24,16 +24,12 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 		{
 			ToonTanksPlayerController->SetPlayerEnabledState(false);
 		}
-		GameOver(false);
+		GameOver(ToonTanksPlayerController->mMetrics.mTowersKilled);
 	}
 	else if(ATower* DestroyTower = Cast<ATower>(DeadActor))
 	{
-		DestroyTower->HandleDestruction();
-		--TargetTowers;
-		if (TargetTowers == 0)
-		{
-			GameOver(true);
-		}
+		++(ToonTanksPlayerController->mMetrics.mTowersKilled);
+		DestroyTower->HandleTowerDeath();
 	}
 }
 

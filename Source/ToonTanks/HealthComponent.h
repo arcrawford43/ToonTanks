@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Tower.h"
 #include "HealthComponent.generated.h"
 
 
@@ -28,8 +29,9 @@ private:
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 100;
 	float Health = 0;
-
+	friend ATower;
 	class AToonTanksGameMode* ToonTanksGameMode{ nullptr };
+	class ATank* Tank;
 
 	UFUNCTION()
 	void DamageTaken(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* Instigator, AActor* DamageCauser);

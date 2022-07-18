@@ -23,7 +23,7 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
 	UFUNCTION(BlueprintImplementableEvent)
-	void GameOver(bool bWonGame);
+	void GameOver(int32 turretsKilled);
 private:
 	class ATank* Tank;
 	class AToonTanksPlayerController* ToonTanksPlayerController;

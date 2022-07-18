@@ -17,6 +17,8 @@ public:
 
 	virtual void HandleDestruction();
 
+	void BeginPlay() override;
+
 protected:
 	void RotateTurret(FVector LookAtTarget);
 	void Fire();
@@ -33,4 +35,6 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
+
+	class AActor* Tank;
 };

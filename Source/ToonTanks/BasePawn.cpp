@@ -4,6 +4,9 @@
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h"
 #include "Projectile.h"
+#include "Kismet/GameplayStatics.h"
+#include "Tank.h"
+#include "ToonTanksPlayerController.h"
 
 // Sets default values
 ABasePawn::ABasePawn()
@@ -44,6 +47,17 @@ void ABasePawn::Fire()
 	{
 		Projectile->SetOwner(this);
 	}
+
+	if (this == Tank)
+	{
+		++(Cast<AToonTanksPlayerController>(UGameplayStatics::GetPlayerController(this, 0))->mMetrics.mShotsFired);
+	}
+}
+
+void ABasePawn::BeginPlay()
+{
+	Super::BeginPlay();
+	Tank = (UGameplayStatics::GetPlayerPawn(this, 0));
 }
 
 
